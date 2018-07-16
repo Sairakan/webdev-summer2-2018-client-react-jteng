@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
+class CourseRow extends React.Component {
+    render() {
+        return (
+            <div>
+            </div>
+        )
+    }
+}
+
 class CourseCard extends React.Component {
     render() {
         return (

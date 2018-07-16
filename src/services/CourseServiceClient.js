@@ -23,12 +23,12 @@ function CourseServiceClient() {
     }
     function findAllCourses(callback) {
         return fetch(self.url, {
-            method: 'get',
+            method: 'get'
         });
     }
     function findCourseById(courseId, callback) {
         return fetch(self.url + '/' + courseId, {
-            method: 'get',
+            method: 'get'
         });
     }
     function updateCourse(courseId, course, callback) {
