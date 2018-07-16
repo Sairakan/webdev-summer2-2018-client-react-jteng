@@ -1,7 +1,32 @@
-import React, {Component} from 'react';
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import React, { Component } from 'react';
 
-class CourseRow extends React.Component {
+export default class CourseList extends Component {
+    render() {
+        return (
+            <div className="container-fluid">
+                <TitleRow />
+            </div>
+        )
+    }
+}
+
+class TitleRow extends Component {
+    render() {
+        return (
+            <div className="row btn-primary container-fluid">
+                <i className="fas fa-bars fa-lg my-auto mr-1"></i>
+                <span className="my-auto mr-1">Course Manager</span>
+                <input className="form-control col"
+                    placeholder="New Course Title" />
+                <div className="my-auto" id="addCourseDiv">
+                    <i class="fas fa-plus-circle fa-2x" id="addCourseBtn"></i>
+                </div>
+            </div>
+        )
+    }
+}
+
+class CourseRow extends Component {
     render() {
         return (
             <div>
@@ -10,7 +35,7 @@ class CourseRow extends React.Component {
     }
 }
 
-class CourseCard extends React.Component {
+class CourseCard extends Component {
     render() {
         return (
             <div className="card" styles={{ width: '18rem' }}>
@@ -23,13 +48,3 @@ class CourseCard extends React.Component {
                 </div></div>)
     }
 }
-
-class CourseList extends Component {
-    render() {
-        return (
-            <input className="form-control" />
-        )
-    }
-}
-
-export default CourseList;
