@@ -21,9 +21,15 @@ export default class CourseList extends Component {
                 <h2>Course List</h2>
                 <table className="table">
                     <thead>
-                        <tr><th>Course Title</th></tr>
+                        <tr>
+                            <th>Course Title</th>
+                            <th>Owner</th>
+                            <th>Date Created</th>
+                        </tr>
                         <tr>
                             <th><input onChange={this.titleChanged} id="titleFld" placeholder="cs101" /></th>
+                            <th></th>
+                            <th></th>
                             <th><button className="btn-primary" onClick={this.createCourse}>Add</button></th>
                         </tr>
                     </thead>
@@ -43,10 +49,15 @@ export default class CourseList extends Component {
     }
     titleChanged(event) {
         this.setState({
-            course: {title: event.target.value}
+            course: {
+                title: event.target.value
+            }
         });
     }
     createCourse() {
+        let course = {...this.state.course};
+        course.created = new Date();
+        course.modified = new Date();
         this.courseService
             .createCourse(this.state.course)
             .then(() => this.findAllCourses());
