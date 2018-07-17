@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Moment from 'react-moment';
+
 export default class CourseRow extends React.Component {
     render() {
         return (

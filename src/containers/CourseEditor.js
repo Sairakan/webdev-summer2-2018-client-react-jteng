@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import ModuleList from './ModuleList';
 
 export default class CourseEditor extends Component {
     constructor(props) {
         super(props);
         this.selectCourse = this.selectCourse.bind(this);
-        this.state = {courseId: ''};
+        this.state = { courseId: '' };
     }
     selectCourse(courseId) {
-        this.setState({courseId: courseId});
+        this.setState({ courseId: courseId });
     }
     componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
@@ -17,7 +18,10 @@ export default class CourseEditor extends Component {
     }
     render() {
         return (
-            <h3>Course {this.state.courseId}</h3>
+            <div>
+                <h3>Course {this.state.courseId}</h3>
+                <ModuleList courseId={this.state.courseId} />
+            </div>
         )
     }
 }

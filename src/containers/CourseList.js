@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CourseRow from '../components/CourseRow';
 import CourseService from '../services/CourseServiceClient'
-//import ModuleList from './modules/ModuleList';
 
 export default class CourseList extends Component {
     constructor() {
