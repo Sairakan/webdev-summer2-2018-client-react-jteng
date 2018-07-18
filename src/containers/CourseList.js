@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Async from 'react-promise';
 import CourseRow from '../components/CourseRow';
 import CourseService from '../services/CourseServiceClient'
 
@@ -6,7 +7,7 @@ export default class CourseList extends Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
-        this.state = {courses: []};
+        this.state = { courses: [] };
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
@@ -14,35 +15,62 @@ export default class CourseList extends Component {
     componentDidMount() {
         this.findAllCourses();
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.courses !== nextState.courses
+            || this.props !== nextProps) return true;
+        else return false;
+    }
     render() {
         return (
-            <div className="container-fluid">
-                <h2>Course List</h2>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Course Title</th>
-                            <th>Owner</th>
-                            <th>Date Created</th>
-                        </tr>
-                        <tr>
-                            <th><input onChange={this.titleChanged} id="titleFld" placeholder="cs101" /></th>
-                            <th></th>
-                            <th></th>
-                            <th><button className="btn-primary" onClick={this.createCourse}>Add</button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.courseRows()}
-                    </tbody>
-                </table>
+            <div>
+                <div className="container-fluid row">
+                    <div className="col col-sm-1">
+                        <i className="fas fa-2x fa-bars"></i>
+                    </div>
+                    <div className="col col-sm-4">
+                        <span className="h2">Course Manager</span>
+                    </div>
+                    <div className="col col-lg-auto">
+                        <input className="form-control" onChange={this.titleChanged} id="titleFld" placeholder="Course Title" />
+                    </div>
+                    <div className="col col-sm-1">
+                        <i className="fas fa-2x fa-plus float-right my-2" onClick={this.createCourse}></i>
+                    </div>
+                </div>
+                <div className="container-fluid">
+                    <table className="table">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Course Title</th>
+                                <th>Owner</th>
+                                <th>Last Modified</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.courseRows()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
     courseRows() {
         var rows = this.state.courses.map(course => {
-            return <CourseRow course={course} key={course.id}
-                                delete={this.deleteCourse} />
+            var usernamePromise = this.courseService.findCourseOwner(course.id)
+                .then(user => {
+                    var username;
+                    if (user == null) username = '';
+                    else username = user.username;
+                    return username;
+                });
+            return <Async key={course.id}
+                promise={usernamePromise}
+                then={username => <CourseRow
+                    key={course.id}
+                    course={course}
+                    delete={this.deleteCourse}
+                    owner={username} />} />
         });
         return rows;
     }
@@ -54,17 +82,18 @@ export default class CourseList extends Component {
         });
     }
     createCourse() {
-        let course = {...this.state.course};
+        let course = { ...this.state.course };
+        if (course.title === '' || !course.title) course.title = 'New Course';
         course.created = new Date();
         course.modified = new Date();
         this.courseService
-            .createCourse(this.state.course)
+            .createCourse(course)
             .then(() => this.findAllCourses());
     }
     findAllCourses() {
         this.courseService.findAllCourses()
             .then(courses => {
-                this.setState({courses: courses});
+                this.setState({ courses: courses });
             });
     }
     deleteCourse(courseId) {

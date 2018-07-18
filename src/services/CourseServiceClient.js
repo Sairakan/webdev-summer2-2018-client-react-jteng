@@ -35,6 +35,14 @@ export default class CourseService {
             method: 'delete'
         }).then(response => response);
     }
+    findCourseOwner(courseId) {
+        return fetch(COURSE_API_URL+'/'+courseId+'/owner')
+            .then(response => response.text())
+            .then(text => {
+                if (text === '') return null;
+                else return JSON.parse(text);
+            });
+    }
 }
 
 

@@ -11,7 +11,7 @@ export default class CourseRow extends React.Component {
                         {this.props.course.title}
                     </Link>
                 </td>
-                <td>{this.props.course.owner}</td>
+                <td>{this.props.owner}</td>
                 <td><Moment fromNowDuring={this.yesterday()} date={this.props.course.modified} /></td>
                 <td><button onClick={() => this.props.delete(this.props.course.id)}>Delete</button></td>
             </tr>

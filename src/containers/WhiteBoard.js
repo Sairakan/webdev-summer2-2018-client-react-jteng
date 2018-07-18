@@ -5,10 +5,10 @@ import CourseEditor from './CourseEditor';
 
 class WhiteBoard extends React.Component {
     render() {
+        document.title = 'Whiteboard';
         return (
             <Router>
                 <div>
-                    <h1>WhiteBoard</h1>
                     <Route path="/course/list"
                         component={CourseList}>
                     </Route>
