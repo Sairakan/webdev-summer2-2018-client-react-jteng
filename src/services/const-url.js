@@ -1,1 +1,1 @@
-export const HOSTNAME = "http://webdev-server-java-jteng.herokuapp.com"
+export const HOSTNAME = "https://webdev-server-java-jteng.herokuapp.com"
