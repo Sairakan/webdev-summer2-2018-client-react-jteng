@@ -10,6 +10,7 @@ class WhiteBoard extends React.Component {
         return (
             <Router>
                 <div>
+                    <Route exact path='/' component={() => window.location = '/course/list'} />
                     <Route path="/course/list"
                         component={CourseList}>
                     </Route>

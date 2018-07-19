@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TopicService from '../../services/TopicService';
 import TopicPill from '../../components/TopicPill';
 
@@ -92,7 +91,7 @@ export default class LessonEditor extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="my-2">
                 <div>
                     {this.renderTopics()}
                 </div>
