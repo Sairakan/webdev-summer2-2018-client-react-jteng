@@ -25,14 +25,13 @@ export default class CourseEditor extends Component {
     render() {
         return (
             <div>
-
-            <div className="bg-primary py-1">
-                <Link to={`/course/list`} className="mx-2">
-                    <i className="fas fa-2x fa-times text-white-50"></i>
-                </Link>
-                <span className="h3 text-white">Course Manager</span>
-            </div>
-            <ModuleList course={this.state.course} />
+                <div className="bg-primary py-1">
+                    <Link to={`/course/list`} className="mx-2">
+                        <i className="fas fa-2x fa-times text-white-50"></i>
+                    </Link>
+                    <span className="h3 text-white">Course Manager</span>
+                </div>
+                <ModuleList course={this.state.course} />
             </div>
         )
     }

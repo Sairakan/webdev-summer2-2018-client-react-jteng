@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ModuleService from '../../services/ModuleService';
 import ModuleListItem from '../../components/ModuleListItem';
 import ModuleEditor from './ModuleEditor';
@@ -12,6 +12,7 @@ export default class ModuleList extends React.Component {
             module: { title: '' },
             modules: []
         };
+        this.ModuleService = ModuleService.instance;
         this.moduleTitle = React.createRef();
         this.setCourse = this.setCourse.bind(this);
         this.setModuleTitle = this.setModuleTitle.bind(this);
@@ -19,7 +20,6 @@ export default class ModuleList extends React.Component {
         this.findAllModulesForCourse = this.findAllModulesForCourse.bind(this);
         this.setModules = this.setModules.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
-        this.ModuleService = ModuleService.instance;
     }
     setCourse(course) {
         this.setState({ course: course });
@@ -64,7 +64,20 @@ export default class ModuleList extends React.Component {
                     courseId={this.state.course.id}
                     delete={this.deleteModule} />);
         return (
-            <ul className="list-group">{modules}</ul>
+            <ul className="list-group">
+                {modules}
+                <li id="moduleInputForm" className="list-group-item">
+                    <form className="form-inline" onSubmit={e => e.preventDefault()}>
+                        <div className="input-group">
+                            <input className="form-control form-control-sm"
+                                onChange={this.setModuleTitle}
+                                placeholder="New Module"
+                                ref={this.moduleTitle} />
+                            <i id="addModuleIcon" className="fas fa-plus ml-2 mt-2 text-primary" onClick={this.createModule}></i>
+                        </div>
+                    </form>
+                </li>
+            </ul >
         );
     }
     render() {
@@ -75,11 +88,6 @@ export default class ModuleList extends React.Component {
                         <h3>{this.state.course.title}</h3>
                         <h4>Modules</h4>
                         {this.renderModules()}
-                        <input value={this.state.module.title}
-                            onChange={this.setModuleTitle}
-                            placeholder="New Module"
-                            ref={this.moduleTitle} />
-                        <button onClick={this.createModule}>Create</button>
                     </div>
                     <div className='col-8'>
                         <Route path="/course/:courseId/module/:moduleId"

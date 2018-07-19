@@ -2,6 +2,9 @@
 #courseNameInputCol {
     width: 1000px;
 }
+#moduleInputForm {
+    padding: 0.5em;
+}
 #titleFld {
     background-color: #7fbdff;
     font-size: 1em;
@@ -19,11 +22,26 @@
 #courseManagerHeaderCol {
     width: 300px;
 }
+#addModuleIcon {
+    width: 30px;
+}
+#addLessonForm {
+    width: 145px;
+}
 .fa-plus-circle {
     background: radial-gradient(white 50%, transparent 50%);
 }
 .table-borderless {
     white-space: nowrap;
+}
+.nav-tabs {
+    height: 2em;
+}
+.nav-link {
+    padding: 0.25em !important;
+}
+.active {
+    padding: 0.25em !important;
 }
 i {
     cursor: pointer;
