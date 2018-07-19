@@ -21,6 +21,14 @@ export default class CourseService {
                 }
             });
     }
+    findCourseById(cId) {
+        return fetch(COURSE_API_URL+'/'+cId)
+            .then(response => response.text())
+            .then(text => {
+                if (text === '') return null;
+                else return JSON.parse(text)
+            });
+    }
     createCourse(course) {
         return fetch(COURSE_API_URL, {
             method: 'post',
@@ -33,7 +41,7 @@ export default class CourseService {
     deleteCourse(courseId) {
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'delete'
-        }).then(response => response);
+        });
     }
     findCourseOwner(courseId) {
         return fetch(COURSE_API_URL+'/'+courseId+'/owner')
@@ -44,51 +52,3 @@ export default class CourseService {
             });
     }
 }
-
-
-
-
-
-// function CourseServiceClient() {
-//     this.createCourse = createCourse;
-//     this.deleteCourse = deleteCourse;
-//     this.findAllCourses = findAllCourses;
-//     this.findCourseById = findCourseById;
-//     this.updateCourse = updateCourse;
-//     this.url = '/api/course';
-//     var self = this;
-
-//     function createCourse(course, callback) {
-//         return fetch(self.url, {
-//             method: 'post',
-//             headers: {
-//                 'content-type': 'application/json'
-//             },
-//             body: JSON.stringify(course)
-//         });
-//     }
-//     function deleteCourse(courseId, callback) {
-//         return fetch(self.url + '/' + courseId, 
-//             { method: 'delete', }
-//         );
-//     }
-//     function findAllCourses(callback) {
-//         return fetch(self.url, {
-//             method: 'get'
-//         });
-//     }
-//     function findCourseById(courseId, callback) {
-//         return fetch(self.url + '/' + courseId, {
-//             method: 'get'
-//         });
-//     }
-//     function updateCourse(courseId, course, callback) {
-//         return fetch(self.rul + '/' + courseId, {
-//             method: 'put',
-//             headers: {
-//                 'content-type': 'application/json'
-//             },
-//             body: JSON.stringify(course)
-//         });
-//     }
-// }

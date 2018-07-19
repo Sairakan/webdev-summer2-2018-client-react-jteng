@@ -1,18 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ModuleService from '../services/ModuleServiceClient';
-import ModuleListItem from '../components/ModuleListItem';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ModuleService from '../../services/ModuleService';
+import ModuleListItem from '../../components/ModuleListItem';
 import ModuleEditor from './ModuleEditor';
 
 export default class ModuleList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            courseId: '',
+            course: {},
             module: { title: '' },
             modules: []
         };
-        this.setCourseId = this.setCourseId.bind(this);
+        this.moduleTitle = React.createRef();
+        this.setCourse = this.setCourse.bind(this);
         this.setModuleTitle = this.setModuleTitle.bind(this);
         this.createModule = this.createModule.bind(this);
         this.findAllModulesForCourse = this.findAllModulesForCourse.bind(this);
@@ -20,8 +21,8 @@ export default class ModuleList extends React.Component {
         this.deleteModule = this.deleteModule.bind(this);
         this.ModuleService = ModuleService.instance;
     }
-    setCourseId(courseId) {
-        this.setState({ courseId: courseId });
+    setCourse(course) {
+        this.setState({ course: course });
     }
     setModuleTitle(event) {
         this.setState({
@@ -32,8 +33,9 @@ export default class ModuleList extends React.Component {
     }
     createModule() {
         this.ModuleService.createModule(
-            this.state.courseId, this.state.module)
-            .then(() => this.findAllModulesForCourse(this.state.courseId));
+            this.state.course.id, this.state.module)
+            .then(() => this.findAllModulesForCourse(this.state.course.id));
+        this.moduleTitle.current.value = '';
     }
     findAllModulesForCourse(courseId) {
         this.ModuleService.findAllModulesForCourse(courseId)
@@ -44,14 +46,14 @@ export default class ModuleList extends React.Component {
     }
     deleteModule(moduleId) {
         this.ModuleService.deleteModule(moduleId)
-            .then(() => this.findAllModulesForCourse(this.state.courseId));
+            .then(() => this.findAllModulesForCourse(this.state.course.id));
     }
     componentDidMount() {
-        this.setCourseId(this.props.courseId);
+        this.setCourse(this.props.course);
     }
     componentWillReceiveProps(newProps) {
-        this.setCourseId(newProps.courseId);
-        this.findAllModulesForCourse(newProps.courseId);
+        this.setCourse(newProps.course);
+        this.findAllModulesForCourse(newProps.course.id);
     }
     renderModules() {
         let modules = this.state.modules
@@ -59,24 +61,25 @@ export default class ModuleList extends React.Component {
                 <ModuleListItem
                     key={module.id}
                     module={module}
-                    courseId={this.state.courseId}
+                    courseId={this.state.course.id}
                     delete={this.deleteModule} />);
-        console.log(this.state);
         return (
-            <ul>{modules}</ul>
+            <ul className="list-group">{modules}</ul>
         );
     }
     render() {
         return (
             <Router>
                 <div className='row'>
-                    <div className='col-4'>
-                        <h4>Module List for courseId: {this.state.courseId}</h4>
+                    <div className='px-4 col-4'>
+                        <h3>{this.state.course.title}</h3>
+                        <h4>Modules</h4>
+                        {this.renderModules()}
                         <input value={this.state.module.title}
                             onChange={this.setModuleTitle}
-                            placeholder="New Module" />
+                            placeholder="New Module"
+                            ref={this.moduleTitle} />
                         <button onClick={this.createModule}>Create</button>
-                        {this.renderModules()}
                     </div>
                     <div className='col-8'>
                         <Route path="/course/:courseId/module/:moduleId"

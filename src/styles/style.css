@@ -1,0 +1,30 @@
+
+#courseNameInputCol {
+    width: 1000px;
+}
+#titleFld {
+    background-color: #7fbdff;
+    font-size: 1em;
+    color: white;
+} 
+#titleFld::-moz-placeholder {
+    color: white;
+} 
+#titleFld::-webkit-input-placeholder {
+    color: white;
+}
+#menuIconCol {
+    width: 70px;
+}
+#courseManagerHeaderCol {
+    width: 300px;
+}
+.fa-plus-circle {
+    background: radial-gradient(white 50%, transparent 50%);
+}
+.table-borderless {
+    white-space: nowrap;
+}
+i {
+    cursor: pointer;
+}
