@@ -1,5 +1,6 @@
+import {HOSTNAME as HOST} from './const-url';
+
 let _singleton = Symbol();
-const HOST = 'http://localhost:8080';
 const LESSON_API_URL = HOST + '/api/course/CID/module/MID/lesson';
 export default class ModuleService {
     constructor(singletonToken) {

@@ -1,5 +1,7 @@
+import {HOSTNAME as HOST} from './const-url';
+
 let _singleton = Symbol();
-const COURSE_API_URL = 'http://localhost:8080/api/course';
+const COURSE_API_URL = HOST + '/api/course';
 export default class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
