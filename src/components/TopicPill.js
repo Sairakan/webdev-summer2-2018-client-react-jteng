@@ -7,7 +7,7 @@ export default class TopicPill extends React.Component {
             <li className="nav-item">
                 <Link className="nav-link" role="tab" to={`${this.props.currentURL}/topic/${this.props.topic.id}`}>
                     {this.props.topic.title}
-                    <i className="fas fa-times"
+                    <i className="fas fa-times text-danger ml-1"
                         onClick={() => this.props.delete(this.props.topic.id)}></i>
                 </Link>
             </li>

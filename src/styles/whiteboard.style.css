@@ -1,0 +1,16 @@
+
+#addLessonForm {
+    width: 145px;
+}
+.table-borderless {
+    white-space: nowrap;
+}
+.nav-link {
+    padding: 0.25em !important;
+}
+.active {
+    padding: 0.25em !important;
+}
+i {
+    cursor: pointer;
+}

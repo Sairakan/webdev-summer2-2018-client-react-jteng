@@ -49,7 +49,7 @@ export default class LessonEditor extends React.Component {
             <TopicPill
                 key={topic.id}
                 topic={topic}
-                currentURL = {this.props.match.url}
+                currentURL={this.props.match.url}
                 delete={this.deleteTopic} />
         );
         return (
@@ -60,7 +60,7 @@ export default class LessonEditor extends React.Component {
                         <div className="input-group">
                             <input className="form-control form-control-sm px-1"
                                 onChange={this.setTopicTitle}
-                                placeholder="New Lesson"
+                                placeholder="New Topic"
                                 ref={this.topicTitle} />
                             <i id="addModuleIcon" className="fas fa-plus ml-2 mt-2 text-primary" onClick={this.createTopic}></i>
                         </div>
@@ -91,10 +91,8 @@ export default class LessonEditor extends React.Component {
     }
     render() {
         return (
-            <div className="my-2">
-                <div>
-                    {this.renderTopics()}
-                </div>
+            <div className="tab-content mt-2">
+                {this.renderTopics()}
                 {/* <div>
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
                             component={TopicEditor} />

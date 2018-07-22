@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LessonService from '../../services/LessonService';
 import LessonTab from '../../components/LessonTab';
 import LessonEditor from '../lessons/LessonEditor';
+import '../../styles/moduleeditor.style.css';
 
 export default class ModuleEditor extends React.Component {
     constructor(props) {
@@ -57,7 +58,10 @@ export default class ModuleEditor extends React.Component {
             <ul className="nav nav-tabs" role="tablist">
                 {lessons}
                 <li className="nav-item">
-                    <form id="addLessonForm" className="form-inline" onSubmit={e => e.preventDefault()}>
+                    <form id="addLessonForm" data-toggle="tab" role="tab"
+                        className="form-inline nav-link active"
+                        aria-selected="true"
+                        onSubmit={e => e.preventDefault()}>
                         <div className="input-group">
                             <input className="form-control form-control-sm px-1"
                                 onChange={this.setLessonTitle}
@@ -79,8 +83,8 @@ export default class ModuleEditor extends React.Component {
     }
     componentWillReceiveProps(newProps) {
         this.setState({
-            courseId: this.props.match.params.courseId,
-            moduleId: this.props.match.params.moduleId
+            courseId: newProps.match.params.courseId,
+            moduleId: newProps.match.params.moduleId
         }, () => this.findAllLessonsForModule());
     }
     shouldComponentUpdate(nextProps, nextState) {
@@ -91,14 +95,10 @@ export default class ModuleEditor extends React.Component {
     render() {
         return (
             <Router>
-                <div>
-                    <div>
-                        {this.renderLessons()}
-                    </div>
-                    <div>
-                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                            component={LessonEditor} />
-                    </div>
+                <div className="container">
+                    {this.renderLessons()}
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                        component={LessonEditor} />
                 </div>
             </Router>
         )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ModuleList from '../modules/ModuleList';
 import CourseService from '../../services/CourseService';
+import '../../styles/courseeditor.style.css';
 
 export default class CourseEditor extends Component {
     constructor(props) {

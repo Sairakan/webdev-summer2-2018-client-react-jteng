@@ -1,0 +1,12 @@
+
+
+
+
+.nav {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.nav-item {
+    display: inline-block;
+    float: none;
+}

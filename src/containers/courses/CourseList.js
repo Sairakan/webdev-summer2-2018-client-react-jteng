@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Async from 'react-promise';
 import CourseRow from '../../components/CourseRow';
 import CourseService from '../../services/CourseService'
+import '../../styles/courselist.style.css';
 
 export default class CourseList extends Component {
     constructor() {
