@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 
 export default class CourseRow extends React.Component {
@@ -8,6 +8,7 @@ export default class CourseRow extends React.Component {
             <tr>
                 <td>
                     <Link to={`/course/${this.props.course.id}/edit`}>
+                        <i className="fas fa-folder text-primary mr-2"></i>
                         {this.props.course.title}
                     </Link>
                 </td>
@@ -20,7 +21,7 @@ export default class CourseRow extends React.Component {
     }
     yesterday() {
         var date = new Date();
-        date.setDate(date.getDate()-1);
+        date.setDate(date.getDate() - 1);
         return date.getTime();
     }
 }

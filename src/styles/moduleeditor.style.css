@@ -5,6 +5,7 @@
 .nav {
     white-space: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 .nav-item {
     display: inline-block;

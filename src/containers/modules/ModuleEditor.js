@@ -59,11 +59,11 @@ export default class ModuleEditor extends React.Component {
                 {lessons}
                 <li className="nav-item">
                     <form id="addLessonForm" data-toggle="tab" role="tab"
-                        className="form-inline nav-link active"
-                        aria-selected="true"
+                        className="form-inline nav-link m-0 p-0"
+                        aria-selected="false"
                         onSubmit={e => e.preventDefault()}>
                         <div className="input-group">
-                            <input className="form-control form-control-sm px-1"
+                            <input className="form-control form-control-sm p-1"
                                 onChange={this.setLessonTitle}
                                 placeholder="New Lesson"
                                 ref={this.lessonTitle} />
