@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import LessonService from '../../services/LessonService';
 import LessonTab from '../../components/LessonTab';
 import LessonEditor from '../lessons/LessonEditor';
@@ -97,8 +98,12 @@ export default class ModuleEditor extends React.Component {
             <Router>
                 <div className="container">
                     {this.renderLessons()}
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                        component={LessonEditor} />
+                    <Switch>
+                        <Route path="/course/:courseId/module/:moduleId/edit"
+                            component={() => (<div></div>)} />
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                            component={LessonEditor} />
+                    </Switch>
                 </div>
             </Router>
         )

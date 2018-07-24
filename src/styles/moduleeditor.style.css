@@ -11,3 +11,6 @@
     display: inline-block;
     float: none;
 }
+.list-group-item:hover {
+    z-index: auto !important;
+}
