@@ -10,3 +10,5 @@ export const LIST_WIDGET_UNORDERED = 'UNORDERED';
 export const ADD_WIDGET = 'add widget';
 export const DELETE_WIDGET = 'delete widget';
 export const UPDATE_WIDGET = 'update widget';
+export const SAVE_WIDGETS = 'save widgets';
+export const LOAD_WIDGETS = 'load widgets';

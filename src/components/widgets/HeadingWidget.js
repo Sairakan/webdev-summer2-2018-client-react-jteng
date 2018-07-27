@@ -3,6 +3,10 @@ import React from 'react'
 const HeadingWidget = ({ widget, updateWidget }) => {
     let text;
     let size;
+    if (!widget.size) {
+        widget.size = 1
+        updateWidget(widget)
+    }
     return (
         <div>
             <h3>Heading Widget</h3>
@@ -21,7 +25,8 @@ const HeadingWidget = ({ widget, updateWidget }) => {
                 updateWidget(widget)
             }}
                 ref={node => size = node}
-                className="form-control" id="size">
+                className="form-control" id="size"
+                defaultValue={widget.size}>
                 <option value="1">Heading 1</option>
                 <option value="2">Heading 2</option>
                 <option value="3">Heading 3</option>

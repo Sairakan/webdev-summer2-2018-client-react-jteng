@@ -1,36 +1,27 @@
-import { ADD_WIDGET, HEADING_WIDGET, DELETE_WIDGET, PARAGRAPH_WIDGET, UPDATE_WIDGET } from '../constants/WidgetConstants';
+import { ADD_WIDGET, HEADING_WIDGET, DELETE_WIDGET, 
+    UPDATE_WIDGET, SAVE_WIDGETS, LOAD_WIDGETS } from '../constants/WidgetConstants';
 
-let defaultWidget = {
-    id: 1,
+import WidgetService from '../services/WidgetService';
+
+const widgetService = WidgetService.instance
+
+let defaultWidget = (id) => ({
+    id: id,
     type: HEADING_WIDGET,
     name: '',
     widgetIndex: 0,
     text: 'ipsum lorem',
     size: 1
-}
+})
 
-let defaultState = [{
-    id: 1,
-    type: HEADING_WIDGET,
-    name: '',
-    widgetIndex: 0,
-    text: 'ipsum lorem',
-    size: 1
-},
-{
-    id: 2,
-    type: PARAGRAPH_WIDGET,
-    name: '',
-    widgetIndex: 0,
-    text: 'ipsum lorem',
-}]
+let defaultState = []
 
 const widgets = (state = defaultState, action) => {
     switch (action.type) {
         case ADD_WIDGET:
             return [
                 ...state,
-                defaultWidget
+                defaultWidget((new Date()).getTime())
             ]
         case DELETE_WIDGET:
             return state.filter(
@@ -44,6 +35,11 @@ const widgets = (state = defaultState, action) => {
                     return widget
                 }
             })
+        case SAVE_WIDGETS:
+            widgetService.saveWidgets(action.widgets);
+            return state;
+        case LOAD_WIDGETS:
+            return action.widgets;
         default: return state;
     }
 }

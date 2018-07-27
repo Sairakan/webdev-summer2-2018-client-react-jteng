@@ -1,4 +1,5 @@
-import { ADD_WIDGET, DELETE_WIDGET, UPDATE_WIDGET } from '../constants/WidgetConstants';
+import { ADD_WIDGET, DELETE_WIDGET, UPDATE_WIDGET, SAVE_WIDGETS, 
+    LOAD_WIDGETS } from '../constants/WidgetConstants';
 
 export const addWidget = (dispatch) => {
     dispatch({
@@ -14,9 +15,22 @@ export const deleteWidget = (dispatch, widgetId) => {
 }
 
 export const updateWidget = (dispatch, widget) => {
-    console.log(widget);
     dispatch({
         type: UPDATE_WIDGET,
         widget: widget
+    })
+}
+
+export const saveWidgets = (dispatch, widgets) => {
+    dispatch({
+        type: SAVE_WIDGETS,
+        widgets: widgets
+    })
+}
+
+export const loadWidgets = (dispatch, widgets) => {
+    dispatch({
+        type: LOAD_WIDGETS,
+        widgets: widgets
     })
 }
