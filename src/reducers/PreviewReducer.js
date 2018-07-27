@@ -2,11 +2,11 @@ import { TOGGLE_PREVIEW } from '../constants/PreviewConstants';
 
 let defaultState = false;
 
-const preview = (state = defaultState, action) => {
+const preview = (preview = defaultState, action) => {
     switch(action.type) {
         case(TOGGLE_PREVIEW):
-            return !state;
-        default: return state;
+            return !preview;
+        default: return preview;
     }
 }
 

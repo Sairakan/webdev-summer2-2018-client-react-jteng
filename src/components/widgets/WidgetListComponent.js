@@ -8,7 +8,7 @@ import ListWidget from './ListWidget';
 import LinkWidget from './LinkWidget';
 import ImageWidget from './ImageWidget';
 
-// Props: widgets, preview, togglePreview, updateWidget, deleteWidget, saveWidgets
+// Props: widgets, preview, deletedWidgets, togglePreview, updateWidget, deleteWidget, saveWidgets
 
 class WidgetList extends React.Component {
     constructor(props) {

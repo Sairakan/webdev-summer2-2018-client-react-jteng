@@ -7,30 +7,30 @@ const widgetService = WidgetService.instance
 let url = window.location.href;
 let tId = url.slice(url.search('topic') + 6);
 
-let defaultWidget = (id) => ({
-    id: id,
+let defaultWidget = () => ({
     type: HEADING_WIDGET,
     name: '',
     widgetIndex: 0,
-    text: 'ipsum lorem',
+    text: 'lorem ipsum',
     size: 1
 })
 
 let defaultState = []
 
-const widgets = (state = defaultState, action) => {
+const widgets = (widgets = defaultState, action) => {
     switch (action.type) {
         case ADD_WIDGET:
             return [
-                ...state,
-                defaultWidget((new Date()).getTime())
+                ...widgets,
+                defaultWidget()
             ]
         case DELETE_WIDGET:
-            return state.filter(
+            console.log(widgets);
+            return widgets.filter(
                 widget => widget.id !== action.widgetId
             )
         case UPDATE_WIDGET:
-            return state.map(widget => {
+            return widgets.map(widget => {
                 if (widget.id === action.widget.id) {
                     return action.widget
                 } else {
@@ -38,11 +38,12 @@ const widgets = (state = defaultState, action) => {
                 }
             })
         case SAVE_WIDGETS:
-            widgetService.saveWidgets(tId, action.widgets);
-            return action.widgets;
+            console.log(widgets);
+            widgetService.saveWidgets(tId, widgets);
+            return widgets;
         case LOAD_WIDGETS:
             return action.widgets;
-        default: return state;
+        default: return widgets;
     }
 }
 

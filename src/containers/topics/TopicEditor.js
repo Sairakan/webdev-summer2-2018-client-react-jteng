@@ -7,8 +7,9 @@ import WidgetListContainer from '../widgets/WidgetListContainer';
 import AddWidgetContainer from '../widgets/AddWidgetContainer';
 import widgets from '../../reducers/WidgetReducer';
 import preview from '../../reducers/PreviewReducer';
+import deletedWidgets from '../../reducers/DeletedWidgetsReducer';
 
-const rootReducer = combineReducers({widgets, preview})
+const rootReducer = combineReducers({widgets, preview, deletedWidgets})
 const store = createStore(rootReducer)
 
 const WidgetApp = () => (
