@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import WidgetListComponent from '../../components/widgets/WidgetListComponent';
-import { deleteWidget, updateWidget, loadWidgets } from '../../actions/WidgetActions';
+import { deleteWidget, updateWidget, loadWidgets, saveWidgets } from '../../actions/WidgetActions';
 import { togglePreview } from '../../actions/PreviewActions';
 import WidgetService from '../../services/WidgetService';
 
@@ -19,6 +19,7 @@ const dispatchToPropsMapper = (dispatch) => ({
         widgetService.findAllWidgetsForTopic(tId)
             .then(widgets => loadWidgets(dispatch, widgets))
     },
+    saveWidgets: (widgets) => saveWidgets(dispatch, widgets),
     togglePreview: (preview) => togglePreview(dispatch, preview)
 })
 

@@ -23,7 +23,9 @@ class WidgetList extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="ml-auto mr-3">
-                        <button type="button" className="btn btn-sm btn-success m-1">
+                        <button type="button" 
+                            onClick={() => this.props.saveWidgets(this.props.widgets)}
+                            className="btn btn-sm btn-success m-1">
                             Save
                         </button>
                         <label htmlFor="switch">Preview</label>

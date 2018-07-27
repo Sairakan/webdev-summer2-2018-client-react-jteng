@@ -4,6 +4,8 @@ import { ADD_WIDGET, HEADING_WIDGET, DELETE_WIDGET,
 import WidgetService from '../services/WidgetService';
 
 const widgetService = WidgetService.instance
+let url = window.location.href;
+let tId = url.slice(url.search('topic') + 6);
 
 let defaultWidget = (id) => ({
     id: id,
@@ -36,8 +38,8 @@ const widgets = (state = defaultState, action) => {
                 }
             })
         case SAVE_WIDGETS:
-            widgetService.saveWidgets(action.widgets);
-            return state;
+            widgetService.saveWidgets(tId, action.widgets);
+            return action.widgets;
         case LOAD_WIDGETS:
             return action.widgets;
         default: return state;

@@ -47,8 +47,8 @@ export default class WidgetService {
             method: 'delete'
         });
     }
-    saveWidgets(widgets) {
-        fetch(HOST+'/api/widget', {
+    saveWidgets(tId, widgets) {
+        fetch(WIDGET_API_URL.replace('{tId}', tId), {
             method: 'put',
             headers: {
                 'content-type': 'application/json'
