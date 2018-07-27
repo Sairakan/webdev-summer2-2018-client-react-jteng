@@ -1,4 +1,4 @@
-import { ADD_WIDGET, HEADING_WIDGET, DELETE_WIDGET, PARAGRAPH_WIDGET } from '../constants/WidgetConstants';
+import { ADD_WIDGET, HEADING_WIDGET, DELETE_WIDGET, PARAGRAPH_WIDGET, UPDATE_WIDGET } from '../constants/WidgetConstants';
 
 let defaultWidget = {
     id: 1,
@@ -33,10 +33,17 @@ const widgets = (state = defaultState, action) => {
                 defaultWidget
             ]
         case DELETE_WIDGET:
-            console.log(action);
             return state.filter(
                 widget => widget.id !== action.widgetId
             )
+        case UPDATE_WIDGET:
+            return state.map(widget => {
+                if (widget.id === action.widget.id) {
+                    return action.widget
+                } else {
+                    return widget
+                }
+            })
         default: return state;
     }
 }
