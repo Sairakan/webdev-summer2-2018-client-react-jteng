@@ -3,6 +3,7 @@ import React from 'react'
 const LinkWidget = ({ widget, updateWidget, preview }) => {
     let text;
     let href;
+    let widgetName;
     if (!widget.hasOwnProperty('href')) {
         widget.href = ''
         updateWidget(widget)
@@ -30,6 +31,15 @@ const LinkWidget = ({ widget, updateWidget, preview }) => {
                         className="form-control" id="href"
                         defaultValue={widget.href}
                         placeholder="Link URL" />
+                    <label htmlFor="widgetName">Widget Name</label>
+                    <input onChange={() => {
+                        widget.widgetName = widgetName.value;
+                        updateWidget(widget)
+                    }}
+                        ref={node => widgetName = node}
+                        className="form-control" id="widgetName"
+                        defaultValue={widget.widgetName}
+                        placeholder="Widget Name" />
                     <h4>Preview</h4>
                 </div>
             }

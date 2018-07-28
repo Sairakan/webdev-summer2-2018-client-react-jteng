@@ -7,17 +7,15 @@ const widgetService = WidgetService.instance
 let defaultState = [];
 
 const deletedWidgets = (deleted = defaultState, action) => {
-    switch(action.type) {
-        case(DELETE_WIDGET):
-            console.log(deleted);
+    switch (action.type) {
+        case (DELETE_WIDGET):
             return [
                 ...deleted,
                 action.widgetId
             ]
-        case(SAVE_WIDGETS):
-            console.log(deleted);
+        case (SAVE_WIDGETS):
             deleted.map(wId => {
-                if (wId)
+                if (wId % 10 !== 5)
                     widgetService.deleteWidget(wId)
                 return null
             })

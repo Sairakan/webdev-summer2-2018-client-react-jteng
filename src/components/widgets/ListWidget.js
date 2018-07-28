@@ -5,6 +5,7 @@ import { LIST_WIDGET_ORDERED, LIST_WIDGET_UNORDERED } from '../../constants/Widg
 const ListWidget = ({ widget, updateWidget, preview }) => {
     let text;
     let listType;
+    let widgetName;
     if (!widget.listType) {
         widget.listType = LIST_WIDGET_ORDERED
         updateWidget(widget)
@@ -14,7 +15,7 @@ const ListWidget = ({ widget, updateWidget, preview }) => {
             {!preview &&
                 <div>
                     <h3>List Widget</h3>
-                    <label htmlFor="text">List Text</label>
+                    <label htmlFor="text">List Text (separate items into individual rows)</label>
                     <textarea onChange={() => {
                         widget.text = text.value;
                         updateWidget(widget)
@@ -35,6 +36,15 @@ const ListWidget = ({ widget, updateWidget, preview }) => {
                         <option value={LIST_WIDGET_ORDERED}>Ordered List</option>
                         <option value={LIST_WIDGET_UNORDERED}>Unordered List</option>
                     </select>
+                    <label htmlFor="widgetName">Widget Name</label>
+                    <input onChange={() => {
+                        widget.widgetName = widgetName.value;
+                        updateWidget(widget)
+                    }}
+                        ref={node => widgetName = node}
+                        className="form-control" id="widgetName"
+                        defaultValue={widget.widgetName}
+                        placeholder="Widget Name" />
                     <h4>Preview</h4>
                 </div>
             }

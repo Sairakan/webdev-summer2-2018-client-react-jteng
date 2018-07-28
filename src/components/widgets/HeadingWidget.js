@@ -3,6 +3,7 @@ import React from 'react'
 const HeadingWidget = ({ widget, updateWidget, preview }) => {
     let text;
     let size;
+    let widgetName;
     if (!widget.size) {
         widget.size = 1
         updateWidget(widget)
@@ -34,6 +35,15 @@ const HeadingWidget = ({ widget, updateWidget, preview }) => {
                         <option value="3">Heading 3</option>
                         <option value="4">Heading 4</option>
                     </select>
+                    <label htmlFor="widgetName">Widget Name</label>
+                    <input onChange={() => {
+                        widget.widgetName = widgetName.value;
+                        updateWidget(widget)
+                    }}
+                        ref={node => widgetName = node}
+                        className="form-control" id="widgetName"
+                        defaultValue={widget.widgetName}
+                        placeholder="Widget Name" />
                     <h4>Preview</h4>
                 </div>
             }

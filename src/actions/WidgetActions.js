@@ -1,5 +1,21 @@
 import { ADD_WIDGET, DELETE_WIDGET, UPDATE_WIDGET, SAVE_WIDGETS, 
-    LOAD_WIDGETS } from '../constants/WidgetConstants';
+    LOAD_WIDGETS, 
+    MOVE_UP,
+    MOVE_DOWN} from '../constants/WidgetConstants';
+
+export const moveUp = (dispatch, widgetIndex) => {
+    dispatch({
+        type: MOVE_UP,
+        widgetIndex: widgetIndex
+    })
+}
+
+export const moveDown = (dispatch, widgetIndex) => {
+    dispatch({
+        type: MOVE_DOWN,
+        widgetIndex: widgetIndex
+    })
+}
 
 export const addWidget = (dispatch) => {
     dispatch({

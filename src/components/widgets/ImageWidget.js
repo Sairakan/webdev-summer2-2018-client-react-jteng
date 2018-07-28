@@ -2,6 +2,7 @@ import React from 'react'
 
 const ImageWidget = ({ widget, updateWidget, preview }) => {
     let src;
+    let widgetName;
     if (!widget.hasOwnProperty('src')) {
         widget.src = ''
         updateWidget(widget)
@@ -20,6 +21,15 @@ const ImageWidget = ({ widget, updateWidget, preview }) => {
                         className="form-control" id="src"
                         defaultValue={widget.src}
                         placeholder="Image Source URL" />
+                    <label htmlFor="widgetName">Widget Name</label>
+                    <input onChange={() => {
+                        widget.widgetName = widgetName.value;
+                        updateWidget(widget)
+                    }}
+                        ref={node => widgetName = node}
+                        className="form-control" id="widgetName"
+                        defaultValue={widget.widgetName}
+                        placeholder="Widget Name" />
                     <h4>Preview</h4>
                 </div>
             }
