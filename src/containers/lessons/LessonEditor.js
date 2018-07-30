@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import TopicService from '../../services/TopicService';
 import TopicPill from '../../components/TopicPill';
@@ -97,9 +97,9 @@ export default class LessonEditor extends React.Component {
             <div className="tab-content mt-2">
                 {this.renderTopics()}
                 <div>
-                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
-                            component={TopicEditor} />
-                    </div>
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                        component={TopicEditor} />
+                </div>
             </div>
         )
     }

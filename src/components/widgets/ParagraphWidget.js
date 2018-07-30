@@ -16,7 +16,7 @@ const ParagraphWidget = ({ widget, updateWidget, preview }) => {
                         ref={node => text = node}
                         className="form-control" id="text"
                         defaultValue={widget.text}
-                        placeholder="Paragraph Text" />
+                        placeholder="Lorem ipsum" />
                     <label htmlFor="widgetName">Widget Name</label>
                     <input onChange={() => {
                         widget.widgetName = widgetName.value;

@@ -12,7 +12,7 @@ let tId = url.slice(url.search('topic') + 6);
 let defaultWidget = (id, widgetIndex) => ({
     id: id,
     type: HEADING_WIDGET,
-    name: '',
+    widgetName: '',
     widgetIndex: widgetIndex,
     text: '',
     size: 1
@@ -73,6 +73,13 @@ const widgets = (widgets = defaultState, action) => {
                 }
             })
         case SAVE_WIDGETS:
+            let tmp = widgets.slice().sort((a, b) => (a.widgetName.localeCompare(b.widgetName)))
+            for (var i = 0; i < tmp.length-1; i++) {
+                if (tmp[i].widgetName === tmp[i+1].widgetName) {
+                    alert('error: two widgets have the same name');
+                    return action.widgets;
+                }
+            }
             alert('saved widgets to server');
             widgetService.saveWidgets(tId, action.widgets);
             return action.widgets;

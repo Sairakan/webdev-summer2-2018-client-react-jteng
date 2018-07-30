@@ -4,7 +4,7 @@ const ImageWidget = ({ widget, updateWidget, preview }) => {
     let src;
     let widgetName;
     if (!widget.hasOwnProperty('src')) {
-        widget.src = ''
+        widget.src = 'http://picsum.photos/300'
         updateWidget(widget)
     }
     return (

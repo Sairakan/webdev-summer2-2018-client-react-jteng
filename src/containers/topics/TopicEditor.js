@@ -9,7 +9,7 @@ import widgets from '../../reducers/WidgetReducer';
 import preview from '../../reducers/PreviewReducer';
 import deletedWidgets from '../../reducers/DeletedWidgetsReducer';
 
-const rootReducer = combineReducers({widgets, preview, deletedWidgets})
+const rootReducer = combineReducers({ widgets, preview, deletedWidgets })
 const store = createStore(rootReducer)
 
 const WidgetApp = () => (
@@ -19,10 +19,15 @@ const WidgetApp = () => (
     </div>
 )
 
-const TopicEditor = () => (
-    <Provider store={store}>
-        <WidgetApp />
-    </Provider>
-)
+class TopicEditor extends React.Component {
+    render() {
+        console.log(this.props.match.params)
+        return (
+            <Provider store={store}>
+                <WidgetApp />
+            </Provider>
+        )
+    }
+}
 
 export default TopicEditor
