@@ -9,11 +9,20 @@ import widgets from '../../reducers/WidgetReducer';
 import preview from '../../reducers/PreviewReducer';
 import deletedWidgets from '../../reducers/DeletedWidgetsReducer';
 
+const rootReducer = combineReducers({ widgets, preview, deletedWidgets })
+const s = createStore(rootReducer);
+
+const configureStore = (store) => {
+    if (module.hot) {
+        const nextRootReducer = combineReducers({ widgets, preview, deletedWidgets });
+        store.replaceReducer(nextRootReducer);
+    }
+  
+    return store;
+  }
 
 class TopicEditor extends React.Component {
     render() {
-        const rootReducer = combineReducers({ widgets, preview, deletedWidgets })
-        const store = createStore(rootReducer)
 
         const WidgetApp = () => (
             <div>
@@ -23,7 +32,7 @@ class TopicEditor extends React.Component {
         )
         
         return (
-            <Provider store={store}>
+            <Provider store={configureStore(s)}>
                 <WidgetApp />
             </Provider>
         )
