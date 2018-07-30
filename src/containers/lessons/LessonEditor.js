@@ -26,7 +26,7 @@ export default class LessonEditor extends React.Component {
     }
     findAllTopicsForLesson() {
         this.TopicService.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
-            .then(topics => this.setTopics(topics));
+            .then(topics => (topics ? this.setTopics(topics) : []));
     }
     setTopics(topics) {
         this.setState({ topics: topics });
