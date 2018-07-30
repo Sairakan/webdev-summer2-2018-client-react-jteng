@@ -42,7 +42,7 @@ export default class ModuleList extends React.Component {
             .then(modules => this.setModules(modules));
     }
     setModules(modules) {
-        this.setState({ modules: modules });
+        this.setState({ modules: (modules ? modules : [])});
     }
     deleteModule(moduleId) {
         this.ModuleService.deleteModule(moduleId)
