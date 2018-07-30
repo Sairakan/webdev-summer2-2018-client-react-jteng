@@ -9,18 +9,19 @@ import widgets from '../../reducers/WidgetReducer';
 import preview from '../../reducers/PreviewReducer';
 import deletedWidgets from '../../reducers/DeletedWidgetsReducer';
 
-const rootReducer = combineReducers({ widgets, preview, deletedWidgets })
-const store = createStore(rootReducer)
-
-const WidgetApp = () => (
-    <div>
-        <WidgetListContainer />
-        <AddWidgetContainer />
-    </div>
-)
 
 class TopicEditor extends React.Component {
     render() {
+        const rootReducer = combineReducers({ widgets, preview, deletedWidgets })
+        const store = createStore(rootReducer)
+
+        const WidgetApp = () => (
+            <div>
+                <WidgetListContainer />
+                <AddWidgetContainer />
+            </div>
+        )
+        
         return (
             <Provider store={store}>
                 <WidgetApp />
