@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import LessonService from '../../services/LessonService';
 import LessonTab from '../../components/LessonTab';
@@ -88,24 +88,15 @@ export default class ModuleEditor extends React.Component {
             moduleId: newProps.match.params.moduleId
         }, () => this.findAllLessonsForModule());
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.lessons !== nextState.lessons
-            || this.props !== nextProps) return true;
-        else return false;
-    }
     render() {
         return (
-            <Router>
-                <div className="container">
-                    {this.renderLessons()}
-                    <Switch>
-                        <Route path="/course/:courseId/module/:moduleId/edit"
-                            component={() => (<div></div>)} />
-                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                            component={LessonEditor} />
-                    </Switch>
-                </div>
-            </Router>
+            <div className="container">
+                {this.renderLessons()}
+                <Route path="/course/:courseId/module/:moduleId/edit"
+                    component={() => (<div></div>)} />
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                    component={LessonEditor} />
+            </div>
         )
     }
 }

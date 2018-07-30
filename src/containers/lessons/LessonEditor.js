@@ -87,11 +87,6 @@ export default class LessonEditor extends React.Component {
             lessonId: newProps.match.params.lessonId
         }, () => this.findAllTopicsForLesson());
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.topics !== nextState.topics
-            || this.props !== nextProps) return true;
-        else return false;
-    }
     render() {
         return (
             <div className="tab-content mt-2">

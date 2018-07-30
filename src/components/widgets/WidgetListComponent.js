@@ -20,7 +20,6 @@ class WidgetList extends React.Component {
         this.props.loadAllWidgetsForTopic(tId);
     }
     render() {
-        console.log(this.props.widgets);
         return (
             <div className="container">
                 <div className="row">
